@@ -92,25 +92,3 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
-        volumeMounts:
-        - name: conf
-          mountPath: /conf
-          readOnly: false
-        - name: data
-          mountPath: /data
-          readOnly: false
-      volumes:
-      - name: conf
-        configMap:
-          name: redis-cluster
-          defaultMode: 0755
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-      labels:
-        name: redis-cluster
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 100Mi
